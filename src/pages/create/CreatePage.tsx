@@ -15,8 +15,10 @@ import {
   Flex,
   Text,
   Tooltip,
+  Spacer,
 } from "@chakra-ui/react";
 import { getBinUrlFromId } from "../../utils/binUtils";
+import CodeEditor from "./code-editor/CodeEditor";
 
 function CreatePage() {
   const history = useHistory();
@@ -66,6 +68,17 @@ function CreatePage() {
 
         <Box my={4} textAlign="left">
           <FormControl isRequired>
+            <>
+              {
+                // TODO:
+                // Convert textarea to Code editor when
+                // Bin Type: "Code" is selected
+                // move CodeEditor state to this level
+              }
+              <CodeEditor />
+              <Spacer height={10} />
+            </>
+
             <FormLabel>Content</FormLabel>
 
             <Textarea
