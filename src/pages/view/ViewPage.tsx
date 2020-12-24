@@ -15,6 +15,7 @@ import {
 import { LockIcon } from "@chakra-ui/icons";
 
 import useQuery from "../../utils/useQuery";
+import { getBin } from "../../api/api";
 
 function ViewPage() {
   const { binId: binIdFromParams } = useParams<{ binId?: string }>();
@@ -58,19 +59,7 @@ function ViewPage() {
     if (shouldFetch) {
       setIsFetching(true);
 
-      fetch("http://localhost:3452/readbins/", {
-        method: "POST",
-
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          id: binId,
-          password: password.length ? password : undefined,
-        }),
-      })
+      getBin(binId, password)
         .then((res) => res.json())
         .then((j) => {
           setBinData(j);

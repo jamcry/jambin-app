@@ -17,6 +17,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { getBinUrlFromId } from "../../utils/binUtils";
+import { createBin } from "../../api/api";
 
 function CreatePage() {
   const history = useHistory();
@@ -35,19 +36,7 @@ function CreatePage() {
     if (shouldFetch) {
       setIsFetching(true);
 
-      fetch("http://localhost:3452/bins/", {
-        method: "POST",
-
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          body,
-          password: password.length ? password : undefined,
-        }),
-      })
+      createBin(body, password)
         .then((res) => res.json())
         .then((j) => {
           setBinData(j);
@@ -154,7 +143,7 @@ function CreatePage() {
                   if (binIdTextAreaRef.current) {
                     binIdTextAreaRef.current!.select();
                     document.execCommand("copy");
-                    window.alert("copied!.");
+                    window.alert("Copied!");
                   }
                 }}
                 mr={16}
