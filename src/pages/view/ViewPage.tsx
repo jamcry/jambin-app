@@ -53,6 +53,7 @@ function ViewPage() {
       setBinData(null);
       setShouldFetch(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ function ViewPage() {
           setShouldFetch(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetch]);
 
   return (
