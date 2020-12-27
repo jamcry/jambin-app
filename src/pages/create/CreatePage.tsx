@@ -71,9 +71,9 @@ function CreatePage() {
               color={body.length ? "gray.700" : "gray.500"}
               mt={2}
             >
-              * Content will not encrypted!
+              * Content will be encrypted
               <Tooltip
-                label="Content will be stored as plain text, but only will be visible to people that have correct id"
+                label="Content will be encrypted, but adding a password will make it more secure"
                 fontSize="md"
               >
                 <QuestionIcon ml={2} />

@@ -22,7 +22,7 @@ function App() {
           </Route>
 
           <Route path="/" exact>
-            Home page
+            <CreatePage />
           </Route>
         </Box>
       </Switch>
