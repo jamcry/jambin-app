@@ -1,5 +1,12 @@
 import { API_BASE_URL, DEFAULT_API_REQ_HEADERS } from "./apiConstants";
 
+function pingServer() {
+  return fetch(`${API_BASE_URL}/ping/`, {
+    method: "POST",
+    headers: DEFAULT_API_REQ_HEADERS,
+  });
+}
+
 function createBin(body: string, password?: string) {
   return fetch(`${API_BASE_URL}/bins/`, {
     method: "POST",
@@ -22,4 +29,4 @@ function getBin(binId: string, password?: string) {
   });
 }
 
-export { createBin, getBin };
+export { createBin, getBin, pingServer };

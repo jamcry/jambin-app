@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./main/Header";
 import CreatePage from "./pages/create/CreatePage";
 import ViewPage from "./pages/view/ViewPage";
+import { pingServer } from "./api/api";
 
 function App() {
+  useEffect(() => {
+    // Ping backend on first app render to wake up Heroku app
+    pingServer();
+  }, []);
+
   return (
     <Router>
       <Header />
