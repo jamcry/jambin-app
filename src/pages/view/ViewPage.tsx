@@ -36,15 +36,15 @@ function ViewPage() {
 
     const passwordFromSearchQuery = searchQuery.get("password");
 
-    if (binIdFromParams) {
-      setBinId(binIdFromParams);
-    }
-
-    if (passwordFromSearchQuery) {
-      setPassword(passwordFromSearchQuery);
-    }
-
     if (binIdFromParams || passwordFromSearchQuery) {
+      if (binIdFromParams) {
+        setBinId(binIdFromParams);
+      }
+
+      if (passwordFromSearchQuery) {
+        setPassword(passwordFromSearchQuery);
+      }
+
       setShouldFetch(true);
     } else {
       // this occurs when clicked VIEW navlink when on a view page, should reset all details in this case
@@ -78,49 +78,54 @@ function ViewPage() {
           <Heading size={"lg"}>View Bin</Heading>
         </Box>
 
-        <Box my={4} textAlign="left">
-          <FormControl>
-            <FormLabel>Bin Id</FormLabel>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            history.push({
+              pathname: `/view/${binId}`,
+              search: password ? `?password=${password}` : undefined,
+            });
+          }}
+        >
+          <Box my={4} textAlign="left">
+            <FormControl>
+              <FormLabel>Bin Id</FormLabel>
 
-            <Input
-              placeholder={"id of the bin"}
-              value={binId}
-              onChange={(e) => {
-                console.log({ val: e.currentTarget.value });
-                setBinId(e.currentTarget.value);
-              }}
-            />
-          </FormControl>
+              <Input
+                placeholder={"id of the bin"}
+                value={binId}
+                onChange={(e) => {
+                  console.log({ val: e.currentTarget.value });
+                  setBinId(e.currentTarget.value);
+                }}
+              />
+            </FormControl>
 
-          <FormControl mt={6}>
-            <FormLabel>Password (optional)</FormLabel>
+            <FormControl mt={6}>
+              <FormLabel>Password (optional)</FormLabel>
 
-            <Input
-              title="hello"
-              placeholder={"password of the bin (if any)"}
-              type={"password"}
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-            />
-          </FormControl>
+              <Input
+                title="hello"
+                placeholder={"password of the bin (if any)"}
+                type={"password"}
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+              />
+            </FormControl>
 
-          <Button
-            width="full"
-            mt={4}
-            isLoading={isFetching}
-            loadingText={"Fetching"}
-            colorScheme={"blue"}
-            onClick={() => {
-              history.push({
-                pathname: `/view/${binId}`,
-                search: password ? `?password=${password}` : undefined,
-              });
-            }}
-            isDisabled={!binId.length}
-          >
-            Get
-          </Button>
-        </Box>
+            <Button
+              width="full"
+              mt={4}
+              isLoading={isFetching}
+              loadingText={"Fetching"}
+              colorScheme={"blue"}
+              type={"submit"}
+              isDisabled={!binId.length}
+            >
+              Get
+            </Button>
+          </Box>
+        </form>
       </Box>
 
       {isFetching && <p>Loading...</p>}

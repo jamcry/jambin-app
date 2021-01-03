@@ -54,57 +54,64 @@ function CreatePage() {
           <Heading size={"lg"}>New Bin</Heading>
         </Box>
 
-        <Box my={4} textAlign="left">
-          <FormControl isRequired>
-            <FormLabel>Content</FormLabel>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setShouldFetch(true);
+          }}
+        >
+          <Box my={4} textAlign="left">
+            <FormControl isRequired>
+              <FormLabel>Content</FormLabel>
 
-            <Textarea
-              placeholder={"content of the bin"}
-              value={body}
-              onChange={(e) => setBody(e.currentTarget.value)}
-              minHeight="250px"
-              isRequired
-            />
+              <Textarea
+                placeholder={"content of the bin"}
+                value={body}
+                onChange={(e) => setBody(e.currentTarget.value)}
+                minHeight="250px"
+                isRequired
+              />
 
-            <Text
-              fontSize="sm"
-              color={body.length ? "gray.700" : "gray.500"}
-              mt={2}
-            >
-              * Content will be encrypted
-              <Tooltip
-                label="Content will be encrypted, but adding a password will make it more secure"
-                fontSize="md"
+              <Text
+                fontSize="sm"
+                color={body.length ? "gray.700" : "gray.500"}
+                mt={2}
               >
-                <QuestionIcon ml={2} />
-              </Tooltip>
-            </Text>
-          </FormControl>
+                * Content will be encrypted
+                <Tooltip
+                  label="Content will be encrypted, but adding a password will make it more secure"
+                  fontSize="md"
+                >
+                  <QuestionIcon ml={2} />
+                </Tooltip>
+              </Text>
+            </FormControl>
 
-          <FormControl mt={6}>
-            <FormLabel>Password (optional)</FormLabel>
+            <FormControl mt={6}>
+              <FormLabel>Password (optional)</FormLabel>
 
-            <Input
-              title="hello"
-              placeholder={"password of the bin (if any)"}
-              type={"password"}
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-            />
-          </FormControl>
+              <Input
+                title="hello"
+                placeholder={"password of the bin (if any)"}
+                type={"password"}
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+              />
+            </FormControl>
 
-          <Button
-            width="full"
-            colorScheme={"blue"}
-            mt={4}
-            isLoading={isFetching}
-            loadingText={"Saving"}
-            onClick={() => setShouldFetch(true)}
-            isDisabled={!body.length}
-          >
-            Save
-          </Button>
-        </Box>
+            <Button
+              width="full"
+              colorScheme={"blue"}
+              mt={4}
+              isLoading={isFetching}
+              loadingText={"Saving"}
+              type={"submit"}
+              isDisabled={!body.length}
+            >
+              Save
+            </Button>
+          </Box>
+        </form>
       </Box>
 
       {binData?.error && (
