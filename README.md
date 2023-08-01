@@ -1,14 +1,16 @@
-# JamBin App
+# 📓 JamBin App
 
-JamBin is a simple text sharing app similar to Pastebin. Users can create bins with text content, and share the link for others to access. Bins are encrypted.
-
-The app uses [jambin-backend](https://github.com/jamcry/jambin-backend) API.
+JamBin is a secure text sharing app, similar to Pastebin. Create bins with text content and share encrypted links for others to access. The app utilizes [jambin-backend](https://github.com/jamcry/jambin-backend) API.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs all the necessary dependencies required for the app.
+
 ### `npm start`
 
-Runs the app in the development mode.\
+Launches the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
